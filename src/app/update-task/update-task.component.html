@@ -1,0 +1,36 @@
+<div class="container">
+  <h3>Update task:</h3>
+  {{updatedTask.task}}
+  <form (submit)="updateTask($event,formData)" #formData="ngForm">
+    <div>
+      <label for="task">Task(description):</label>
+      <input type="text"
+      name="task"
+      [(ngModel)]="updatedTask.task"
+      required
+      minlength="3"
+      #task="ngModel">
+    </div>
+    <div>
+      <label for="priority">Priority:</label>
+      <select  
+        name="priority"
+        [(ngModel)]="updatedTask.priority"
+        required
+        minlength="1"
+        maxlength="1"
+        #priority="ngModel">
+        <option value=5>5</option>
+        <option value=4>4</option>
+        <option value=3>3</option>
+        <option value=2>2</option>
+        <option value=1>1</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success" >Update Task</button>
+    <button class="btn btn-primary" (click)="return()">Return</button>
+  </form>
+</div>
+
+

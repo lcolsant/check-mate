@@ -1,0 +1,46 @@
+
+<h3>Registration:</h3>
+<form (submit)="register(formReg.value)" #formReg="ngForm" >
+  <div>
+    <label for="name">Name: </label>
+    <input type="text"
+      name="name"
+      [(ngModel)]="user.name"
+      required
+      minlength="3"
+      #name="ngModel">
+  </div>
+  <div>
+    <label for="email">Email: </label>
+    <input type="text"
+      name="email"
+      [(ngModel)]="user.email"
+      required
+      minlength="3"
+      #email="ngModel">
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input type="password"
+      name="password"
+      [(ngModel)]="user.password"
+      required
+      minlength="3"
+      #password="ngModel">
+  </div>
+    <button [disabled]="!formReg.valid">Register</button>
+</form>
+<!-- data form validations -->
+<div *ngIf="name.touched && name.errors">
+    <div *ngIf='name.errors.required'>You must enter a name. </div>
+    <div *ngIf='name.errors.minlength'>Name must be at least 3 characters. </div>
+</div>
+<div *ngIf="email.touched && email.errors">
+    <div *ngIf='email.errors.required'>You must enter an email. </div>
+    <div *ngIf='email.errors.minlength'>Email must be at least 3 characters. </div>
+</div>
+<div *ngIf="password.touched && password.errors">
+    <div *ngIf='password.errors.required'>You must enter a password. </div>
+    <div *ngIf='password.errors.minlength'>Password must be at least 3 characters. </div>
+</div>
+  <!-- end validations -->

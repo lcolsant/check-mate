@@ -1,0 +1,19 @@
+
+.jumbotron{
+    background-image: url('../assets/chess2.jpeg');
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    /* height: 50%; */
+}
+
+
+.header{
+    width: 100%;
+}
+
+.img-fluid{
+    max-width: 25%;
+    height: auto;
+    display: inline-block;
+}
