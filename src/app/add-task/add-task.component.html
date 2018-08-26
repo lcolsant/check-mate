@@ -1,7 +1,5 @@
 <div class="container">
   <h3>Add a task:</h3>
-  {{task.task}}
-  {{formData.value | json}}
   <form (submit)="addTask($event,formData)" #formData="ngForm">
     <div>
       <label for="task">Task(description):</label>
@@ -27,6 +25,12 @@
         <option value=2>2</option>
         <option value=1>1</option>
       </select>
+    </div>
+    <div>
+      <label for="note">Notes(optional):</label>
+      <input type="text"
+      name="note"
+      [(ngModel)]="newTask.note">
     </div>
 
     <button class="btn btn-success" >Add Task</button>

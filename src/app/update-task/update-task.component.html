@@ -1,6 +1,6 @@
 <div class="container">
   <h3>Update task:</h3>
-  {{updatedTask.task}}
+  <!-- {{updatedTask.task}} -->
   <form (submit)="updateTask($event,formData)" #formData="ngForm">
     <div>
       <label for="task">Task(description):</label>
@@ -26,6 +26,12 @@
         <option value=2>2</option>
         <option value=1>1</option>
       </select>
+    </div>
+    <div>
+      <label for="note">Notes(optional):</label>
+      <input type="text"
+      name="note"
+      [(ngModel)]="updatedTask.note">
     </div>
 
     <button class="btn btn-success" >Update Task</button>

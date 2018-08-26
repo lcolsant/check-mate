@@ -15,10 +15,8 @@ const taskSchema = new Schema({
         trim: true,
     },
 
-    status:{
+    note:{
         type:String,
-        default:"not done",
-        required:[true, 'You must provide a status'],
         trim: true,
     },
 },
@@ -28,4 +26,3 @@ const taskSchema = new Schema({
 
 module.exports = mongoose.model('Task', taskSchema);
 
-//comment

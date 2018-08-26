@@ -9,6 +9,7 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -26,15 +27,20 @@ const routes: Routes = [
   },
   {
     path: 'tasks',
-    component: LandingComponent,
-  },
-  {
-    path: 'tasks/addTask',
-    component: AddTaskComponent,
-  },
-  {
-    path: 'tasks/edit/:id',
-    component: UpdateTaskComponent,
+    children:[
+      {
+        path:'',
+        component: LandingComponent,
+      },
+      {
+        path: 'addTask',
+        component: AddTaskComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: UpdateTaskComponent,
+      },
+    ],
   },
 ];
 
