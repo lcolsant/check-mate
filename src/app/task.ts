@@ -3,4 +3,5 @@ export class Task {
     task:string;
     priority:Number;
     note:string;
+    owner_id:string;
   }

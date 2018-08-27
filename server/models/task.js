@@ -19,6 +19,11 @@ const taskSchema = new Schema({
         type:String,
         trim: true,
     },
+
+    owner_id:{
+        type:String,
+        required:true,
+    },
 },
     {
         timestamps: true,

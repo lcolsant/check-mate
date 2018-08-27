@@ -14,6 +14,8 @@ export class LandingComponent implements OnInit {
 
   tasks:Array<Task> = [];
   user_name;
+  owner_id:string;
+
 
   // tasks = [
   //   {
@@ -45,11 +47,12 @@ export class LandingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.owner_id = this.cookieService.get('userID');
     this.user_name = this.cookieService.get('user_name');
     this.TaskService.getTasks().subscribe(tasks => {
       console.log('retrieving tasks from db...');
       this.tasks = tasks;
+      this.tasks = this.tasks.filter(task => task.owner_id == this.owner_id)
     });
   }
 

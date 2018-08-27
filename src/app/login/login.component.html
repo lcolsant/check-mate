@@ -16,7 +16,9 @@
     <input type="password"
       name="password"
       [(ngModel)]="user.password"
-      #position="ngModel">
+      required
+      minlength="8"
+      #password="ngModel">
   </div>
     <button class="btn btn-primary" [disabled]="!formLogin.valid">Login</button>
 </form>
@@ -24,5 +26,9 @@
 <div class="text-danger" *ngIf="email.touched && email.errors">
     <div *ngIf='email.errors.required'>You must enter an email. </div>
     <div *ngIf='email.errors.minlength'>Email must be at least 3 characters. </div>
+</div>
+<div class="text-danger" *ngIf="password.touched && password.errors">
+    <div *ngIf='password.errors.required'>You must enter a password. </div>
+    <div *ngIf='password.errors.minlength'>Password must be at least 8 characters. </div>
 </div>
   <!-- end validations -->
