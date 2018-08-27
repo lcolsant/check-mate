@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import AuthService
 import { User } from '../user';
-import { NgModel } from '@angular/forms';
+// import { NgModel } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    //private auth: AuthService,
+    private authService:AuthService,
   ) { }
 
   ngOnInit() {
@@ -25,9 +25,11 @@ export class LoginComponent implements OnInit {
 
   login($event, user:User){
     // $event.preventDefault();
-    console.log('logging in user...', user);
-
-    this.router.navigateByUrl('tasks');
+    this.authService.login(user).subscribe(user => {
+      console.log('logging in user...', user.username);
+      this.router.navigateByUrl('tasks');
+      
+    });
 
   }
 }

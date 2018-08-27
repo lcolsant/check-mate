@@ -12,11 +12,16 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { UpdateTaskComponent } from './update-task/update-task.component';
 
 //import services
 import { TaskService } from './task.service';
-import { AddTaskComponent } from './add-task/add-task.component';
-import { UpdateTaskComponent } from './update-task/update-task.component';
+import { AuthService } from './auth.service';
+
+//import guards
+import { AuthGuard } from './auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +40,7 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
     HttpClientModule,
     CookieModule.forRoot(),
   ],
-  providers: [TaskService],
+  providers: [TaskService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
+import { CookieService } from 'ngx-cookie';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -11,6 +13,7 @@ import { TaskService } from '../task.service';
 export class LandingComponent implements OnInit {
 
   tasks:Array<Task> = [];
+  user_name;
 
   // tasks = [
   //   {
@@ -37,9 +40,13 @@ export class LandingComponent implements OnInit {
   constructor(
     private router: Router,
     private TaskService: TaskService,
+    private AuthService: AuthService,
+    private cookieService: CookieService,
   ) { }
 
   ngOnInit() {
+
+    this.user_name = this.cookieService.get('user_name');
     this.TaskService.getTasks().subscribe(tasks => {
       console.log('retrieving tasks from db...');
       this.tasks = tasks;
@@ -47,8 +54,10 @@ export class LandingComponent implements OnInit {
   }
 
   signOut(){
-    console.log('exit works');
-    this.router.navigateByUrl('');
+    this.AuthService.logout().subscribe(() =>{
+      console.log('User logged out succesfully');
+      this.router.navigateByUrl('');
+    })
 
   }
 

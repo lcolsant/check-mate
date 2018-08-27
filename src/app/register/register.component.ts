@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { User } from '../user';
-
+import { NgForm } from '../../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,11 @@ import { User } from '../user';
 export class RegisterComponent implements OnInit {
 
   user:User = new User();
+  registrationErrors: string[] = [];
 
   constructor(
     private router: Router,
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
@@ -23,7 +26,10 @@ export class RegisterComponent implements OnInit {
     console.log('regisering user...', user);
     event.preventDefault();
 
-    this.router.navigateByUrl('landing');
+    this.auth.register(user).subscribe(()=>{
+      console.log('registration successful...');
+      this.router.navigateByUrl('tasks');
+    });
     
   }
 

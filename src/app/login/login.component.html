@@ -1,6 +1,6 @@
 
 <h3>Login:</h3>
-{{user.email}}
+<!-- {{user.email}} -->
 <form (submit)="login($event,formLogin.value)" #formLogin="ngForm" >
   <div>
     <label for="email">Email: </label>
@@ -18,10 +18,10 @@
       [(ngModel)]="user.password"
       #position="ngModel">
   </div>
-    <button [disabled]="!formLogin.valid">Login</button>
+    <button class="btn btn-primary" [disabled]="!formLogin.valid">Login</button>
 </form>
 <!-- data form validations -->
-<div *ngIf="email.touched && email.errors">
+<div class="text-danger" *ngIf="email.touched && email.errors">
     <div *ngIf='email.errors.required'>You must enter an email. </div>
     <div *ngIf='email.errors.minlength'>Email must be at least 3 characters. </div>
 </div>
