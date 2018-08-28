@@ -1,4 +1,8 @@
-
+<div *ngIf='errors.length'>
+    <ul class="alert alert-danger">
+      <li *ngFor='let error of errors'>{{error}}</li>
+    </ul>
+</div>
 <h3>Login:</h3>
 <!-- {{user.email}} -->
 <form (submit)="login($event,formLogin.value)" #formLogin="ngForm" >

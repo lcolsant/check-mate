@@ -8,16 +8,16 @@ module.exports = {
         const valid = await User.validatePassword(password, user.password);
 
         if (!valid) {
-          throw new Error('password do not match');
+          throw new Error('password does not match');
         }
 
         // handle login
         completeLogin(request, response, user);
       })
       .catch(error => {
-        console.log('error message', error.message);
+        console.log('error message: ', error.message);
 
-        response.status(403).json({ error: 'user/pass combo not found' });
+        response.status(403).json({ error: 'user/password combo not found' });
       });
   },
   register(request, response) {
