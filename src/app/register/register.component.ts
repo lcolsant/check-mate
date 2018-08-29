@@ -12,7 +12,7 @@ import { NgForm } from '../../../node_modules/@angular/forms';
 export class RegisterComponent implements OnInit {
 
   user:User = new User();
-  registrationErrors: string[] = [];
+  errors: string[] = [];
 
   constructor(
     private router: Router,
@@ -29,7 +29,11 @@ export class RegisterComponent implements OnInit {
     this.auth.register(user).subscribe(()=>{
       console.log('registration successful...');
       this.router.navigateByUrl('tasks');
-    });
+    },
+      response => {
+        this.errors.push(response.error.error);
+    }
+  );
     
   }
 

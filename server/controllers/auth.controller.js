@@ -28,7 +28,12 @@ module.exports = {
         // handle login
         completeLogin(request, response, user);
       })
-      .catch(console.log);
+      .catch(error => {
+        console.log('registration error: ', error.message);
+
+        response.status(403).json({error: 'registration error:' + error.message});
+        console.log(error.message);
+      });
   },
   logout(request, response) {
     request.session.destroy();

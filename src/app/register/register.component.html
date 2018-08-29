@@ -1,8 +1,12 @@
-
+<div *ngIf='errors.length'>
+    <ul class="alert alert-danger">
+        <li *ngFor='let error of errors'>{{error}}</li>
+    </ul>
+</div>
 <h3>Registration:</h3>
 <form (submit)="register(formReg.value)" #formReg="ngForm" >
   <div>
-    <label for="username">Username: </label>
+    <label for="username">Username (3 chars.): </label>
     <input type="text"
       name="username"
       [(ngModel)]="user.username"
@@ -19,7 +23,7 @@
       #email="ngModel">
   </div>
   <div>
-    <label for="password">Password: </label>
+    <label for="password">Password (8 char.): </label>
     <input type="password"
       name="password"
       [(ngModel)]="user.password"
