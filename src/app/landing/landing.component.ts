@@ -15,28 +15,8 @@ export class LandingComponent implements OnInit {
   tasks:Array<Task> = [];
   user_name;
   owner_id:string;
+  tasks_count:number = 0;
 
-
-  // tasks = [
-  //   {
-  //     _id:'1',
-  //     task:'Take out the garbage',
-  //     status:'not done',
-  //     priority:3,
-  //   },
-  //   {
-  //     _id:'2',
-  //     task:'Change air filters',
-  //     status:'not done',
-  //     priority:5,
-  //   },
-  //   {
-  //     _id:'3',
-  //     task:'spray lawn',
-  //     status:'not done',
-  //     priority:4,
-  //   },
-  // ]
     
   
   constructor(
@@ -53,6 +33,7 @@ export class LandingComponent implements OnInit {
       console.log('retrieving tasks from db...');
       this.tasks = tasks;
       this.tasks = this.tasks.filter(task => task.owner_id == this.owner_id)
+      this.tasks_count = this.tasks.length;
     });
   }
 

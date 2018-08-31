@@ -24,8 +24,6 @@ module.exports = {
     console.log('registering user', request.body);
     User.create(request.body)
       .then(user => {
-        // console.log('in auth controller....returned from api', user);
-        // handle login
         completeLogin(request, response, user);
       })
       .catch(error => {
