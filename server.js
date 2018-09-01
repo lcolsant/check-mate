@@ -34,8 +34,8 @@ app
 app.listen(port, ()=> console.log(`Express server listening on port ${port}`));
 
 //update for deployment
-app.get("/*", function (request, response){
-    res.sendFile(path.join(__dirname, './dist/check-mate/index.html'))
-});
+// app.get("/*", function (request, response){
+//     res.sendFile(path.join(__dirname, './dist/check-mate/index.html'))
+// });
 
 
