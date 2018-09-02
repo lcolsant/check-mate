@@ -208,7 +208,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n.jumbotron{\n\n    color: steelblue;\n    height: 225px;\n    padding-top: 10px;\n}\n\n\nh1{\n    /* width: 100%; */\n    display: inline-block;\n    padding-top: 10px;\n}\n\n\n.header {\n    width: 50%;\n    display: inline-block;\n    padding-top: 40px;\n\n}\n\n\n.chess {\n    vertical-align: top;\n    display: inline-block;\n    width: 40%;\n}\n\n\n.img-fluid{\n    max-width: 25%;\n    height: auto;\n    display: inline-block;\n}\n\n\n.chess-img {\n    height: auto;\n    width: 50%;\n    display: block;\n    margin: 0 auto;\n\n\n}"
+module.exports = "\n.jumbotron{\n\n    color: steelblue;\n    height: 225px;\n    padding-top: 10px;\n}\n\n\nh1{\n    /* width: 100%; */\n    display: inline-block;\n    padding-top: 10px;\n}\n\n\n.header {\n    width: 50%;\n    display: inline-block;\n    padding-top: 40px;\n    margin-left: 60px;\n\n}\n\n\n.chess {\n    margin-top: 20px;\n    vertical-align: top;\n    display: inline-block;\n    width: 40%;\n}\n\n\n.img-fluid{\n    max-width: 25%;\n    height: auto;\n    display: inline-block;\n}\n\n\n.chess-img {\n    height: auto;\n    width: 30%;\n    display: block;\n    margin: 0 auto;\n\n\n}"
 
 /***/ }),
 
