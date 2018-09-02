@@ -9,3 +9,12 @@
 ul {
     list-style: none;
 }
+
+
+.search-bar {
+    width: 300px;
+    height: 35px;
+    color:gray;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }

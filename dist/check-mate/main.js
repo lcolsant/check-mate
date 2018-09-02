@@ -285,6 +285,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _task_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./task.service */ "./src/app/task.service.ts");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _search_pipe__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./search.pipe */ "./src/app/search.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -311,6 +312,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 //import guards
 
+//import pipes
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -323,7 +326,8 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"],
                 _landing_landing_component__WEBPACK_IMPORTED_MODULE_10__["LandingComponent"],
                 _add_task_add_task_component__WEBPACK_IMPORTED_MODULE_11__["AddTaskComponent"],
-                _update_task_update_task_component__WEBPACK_IMPORTED_MODULE_12__["UpdateTaskComponent"]
+                _update_task_update_task_component__WEBPACK_IMPORTED_MODULE_12__["UpdateTaskComponent"],
+                _search_pipe__WEBPACK_IMPORTED_MODULE_16__["SearchPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -535,7 +539,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".btn {\n    margin-left: 5px;\n}\n/* .btn-group {\n    display:flex;\n} */\nul {\n    list-style: none;\n}"
+module.exports = ".btn {\n    margin-left: 5px;\n}\n/* .btn-group {\n    display:flex;\n} */\nul {\n    list-style: none;\n}\n.search-bar {\n    width: 300px;\n    height: 35px;\n    color:gray;\n    font-size: 20px;\n    margin-bottom: 20px;\n  }"
 
 /***/ }),
 
@@ -546,7 +550,7 @@ module.exports = ".btn {\n    margin-left: 5px;\n}\n/* .btn-group {\n    display
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"tasklist\">\n    <p class=\"text-primary\">Hello, {{user_name}}, you are logged in.</p>\n    <div *ngIf='tasks_count == 0'>\n        <ul class=\"alert alert-danger\">\n          <li>Welcome! Let's get going. Enter your first task and hit check-mate button when completed!</li>\n        </ul>\n    </div>\n    <h3>My tasks:</h3>\n    <table class=\"table table-striped table-hover\">\n      <thead>\n        <th style=\"width:30%\">Task</th>\n        <th style=\"width:5%\">Priority</th>\n        <th style=\"width:25%\">Notes</th>\n        <th style=\"width:40%\">Actions</th>\n      </thead>\n      <tbody>\n        <tr *ngFor='let task of tasks'>\n          <td>{{task.task}}</td>\n          <td>{{task.priority}}</td>\n          <td>{{task.note}}</td>\n          <td>\n            <button class=\"btn btn-success btn-md btn-group\"(click)=\"deleteTask(task)\">check-mate!</button>\n            <button class=\"btn btn-warning btn-md btn-group\" [routerLink]=\"['/tasks','edit',task._id]\" >update</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <button class=\"btn btn-primary btn-md\" (click)=\"addTask()\">Add a task</button>\n  <button class=\"btn btn-primary btn-md\" (click)=\"signOut()\">Sign Out</button>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"tasklist\">\n    <p class=\"text-primary\">Hello, {{user_name}}, you are logged in.</p>\n    <div *ngIf='tasks_count == 0'>\n        <ul class=\"alert alert-danger\">\n          <li>Welcome! Let's get going. Enter your first task and hit check-mate button when completed!</li>\n        </ul>\n    </div>\n    <div class=\"search\">\n        <input class=\"search-bar\" type=\"text\" placeholder=\"Search for a task...\" [(ngModel)]='filter.task'>\n        <button *ngIf='filter.task' (click)='filter.task = null' class=\"\">x</button>\n    </div>\n    <h3>My tasks:</h3>\n    <table class=\"table table-striped table-hover\">\n      <thead>\n        <th style=\"width:30%\">Task</th>\n        <th style=\"width:5%\">Priority</th>\n        <th style=\"width:25%\">Notes</th>\n        <th style=\"width:40%\">Actions</th>\n      </thead>\n      <tbody>\n        <tr *ngFor='let task of tasks | search:filter'>\n          <td>{{task.task}}</td>\n          <td>{{task.priority}}</td>\n          <td>{{task.note}}</td>\n          <td>\n            <button class=\"btn btn-success btn-md btn-group\"(click)=\"deleteTask(task)\">check-mate!</button>\n            <button class=\"btn btn-warning btn-md btn-group\" [routerLink]=\"['/tasks','edit',task._id]\" >update</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <button class=\"btn btn-primary btn-md\" (click)=\"addTask()\">Add a task</button>\n  <button class=\"btn btn-primary btn-md\" (click)=\"signOut()\">Sign Out</button>\n</div>\n"
 
 /***/ }),
 
@@ -562,9 +566,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LandingComponent", function() { return LandingComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _task_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../task.service */ "./src/app/task.service.ts");
-/* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../task */ "./src/app/task.ts");
+/* harmony import */ var _task_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../task.service */ "./src/app/task.service.ts");
+/* harmony import */ var ngx_cookie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-cookie */ "./node_modules/ngx-cookie/fesm5/ngx-cookie.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -579,6 +584,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LandingComponent = /** @class */ (function () {
     function LandingComponent(router, TaskService, AuthService, cookieService) {
         this.router = router;
@@ -586,6 +592,7 @@ var LandingComponent = /** @class */ (function () {
         this.AuthService = AuthService;
         this.cookieService = cookieService;
         this.tasks = [];
+        this.filter = new _task__WEBPACK_IMPORTED_MODULE_2__["Task"]();
     }
     LandingComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -622,9 +629,9 @@ var LandingComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./landing.component.css */ "./src/app/landing/landing.component.css")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _task_service__WEBPACK_IMPORTED_MODULE_2__["TaskService"],
-            _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
-            ngx_cookie__WEBPACK_IMPORTED_MODULE_3__["CookieService"]])
+            _task_service__WEBPACK_IMPORTED_MODULE_3__["TaskService"],
+            _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
+            ngx_cookie__WEBPACK_IMPORTED_MODULE_4__["CookieService"]])
     ], LandingComponent);
     return LandingComponent;
 }());
@@ -799,6 +806,69 @@ var RegisterComponent = /** @class */ (function () {
             _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], RegisterComponent);
     return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/search.pipe.ts":
+/*!********************************!*\
+  !*** ./src/app/search.pipe.ts ***!
+  \********************************/
+/*! exports provided: SearchPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPipe", function() { return SearchPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SearchPipe = /** @class */ (function () {
+    function SearchPipe() {
+    }
+    SearchPipe.prototype.transform = function (elements, filter) {
+        var _this = this;
+        // console.log('searching', elements, filter);
+        // if undefined or null just return all elements
+        if (!elements || !filter) {
+            return elements;
+        }
+        return elements.filter(function (element) { return _this.applyFilter(element, filter); });
+    };
+    SearchPipe.prototype.applyFilter = function (element, filter) {
+        // console.log('bicycle', element);
+        // console.log('filter', filter);
+        for (var field in filter) {
+            if (this.validInput(filter[field]) && this.validInput(element[field])) {
+                if (!element[field]
+                    .toString()
+                    .toLowerCase()
+                    .includes(filter[field].toString().toLowerCase())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+    //helper method to validate passed data
+    SearchPipe.prototype.validInput = function (input) {
+        return input !== undefined && input !== null;
+    };
+    SearchPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'search',
+            //false sets pipe to run over and over
+            pure: false
+        })
+    ], SearchPipe);
+    return SearchPipe;
 }());
 
 

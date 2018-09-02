@@ -16,6 +16,7 @@ export class LandingComponent implements OnInit {
   user_name;
   owner_id:string;
   tasks_count:number;
+  filter: Task = new Task();
 
     
   

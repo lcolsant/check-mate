@@ -22,6 +22,9 @@ import { AuthService } from './auth.service';
 //import guards
 import { AuthGuard } from './auth.guard';
 
+//import pipes
+import { SearchPipe } from './search.pipe';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { AuthGuard } from './auth.guard';
     LoginComponent,
     LandingComponent,
     AddTaskComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
