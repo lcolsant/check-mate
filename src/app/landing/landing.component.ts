@@ -15,7 +15,7 @@ export class LandingComponent implements OnInit {
   tasks:Array<Task> = [];
   user_name;
   owner_id:string;
-  tasks_count:number = 0;
+  tasks_count:number;
 
     
   

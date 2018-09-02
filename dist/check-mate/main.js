@@ -586,7 +586,6 @@ var LandingComponent = /** @class */ (function () {
         this.AuthService = AuthService;
         this.cookieService = cookieService;
         this.tasks = [];
-        this.tasks_count = 0;
     }
     LandingComponent.prototype.ngOnInit = function () {
         var _this = this;
