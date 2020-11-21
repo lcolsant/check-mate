@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 8000;
 const app = express();
 
+require('dotenv').config()
+
 const sessionConfig = {
     saveUninitialized: true,
     secret: 'sessionSecret',

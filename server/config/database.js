@@ -9,7 +9,7 @@ const modelsPath = path.resolve('server', 'models');
 //mongoose.connect('mongodb://localhost:27017/tasks');
 
 //MongoDB hosted connnection
-mongoose.connect('mongodb://lcolsant:admin1@ds239682.mlab.com:39682/checkmate-db1');
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@checkmate-db1.vxetp.mongodb.net/checkmate-db1?retryWrites=true&w=majority`);
 
 mongoose.connection.on('connected', ()=>console.log('Connected to MongoDB...'));
 
